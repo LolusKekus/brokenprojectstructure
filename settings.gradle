@@ -1,0 +1,25 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "BrokenProjectStructure"
+include ':app'
+
+include ':CommonLibOne'
+
+include ':SubmoduleOne'
+project(':SubmoduleOne').projectDir = new File(project(':CommonLibOne').projectDir, 'SubmoduleOne')  // broken variant
+//project(':SubmoduleOne').projectDir = new File(rootProject.projectDir, 'CommonLibOne/SubmoduleOne')  // working variant
+
+include ':CommonLibTwo'
